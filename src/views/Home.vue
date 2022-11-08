@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Home extends Vue {
-  apiUrl = "";
+  apiUrl = '';
   created() {
     this.apiUrl = process.env.VUE_APP_BASE_URL_API;
   }
