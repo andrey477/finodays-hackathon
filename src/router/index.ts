@@ -2,7 +2,6 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home/Home.vue';
 import { RouteNames } from '@/router/routeNames';
-import CreditPage from '@/views/CreditPage/CreditPage.vue';
 import MortgagePage from '@/views/MortgagePage/MortgagePage.vue';
 import AboutPage from '@/views/AboutPage/AboutPage.vue';
 import NewMortgagePage from '@/views/NewMortgagePage/NewMortgagePage.vue';
@@ -14,11 +13,6 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Home',
     component: Home,
-  },
-  {
-    path: '/credit',
-    name: RouteNames.CREDIT,
-    component: CreditPage,
   },
   {
     path: '/mortgage',

@@ -1,5 +1,5 @@
 <template>
-  <div>Mortgage Page</div>
+  <div></div>
 </template>
 
 <script lang="ts">

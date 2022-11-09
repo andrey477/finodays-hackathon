@@ -3,10 +3,6 @@ import { RouteNames } from '@/router/routeNames';
 
 export const navigation: Navigation[] = [
   {
-    name: 'Кредиты',
-    route: RouteNames.CREDIT,
-  },
-  {
     name: 'Ипотека',
     route: RouteNames.MORTGAGE,
   },
