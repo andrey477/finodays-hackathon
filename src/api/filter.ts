@@ -1,7 +1,7 @@
-import { Filter } from '@/types/filter';
+import { Strategy } from '@/types/strategy';
 import { api } from '@/api/index';
 
-export const getFilterBlocks = async (): Promise<Filter.Response[]> => {
+export const getFilterBlocks = async (): Promise<Strategy.Response[]> => {
   try {
     const { data } = await api.get('/api/filter/blocks');
     return data;

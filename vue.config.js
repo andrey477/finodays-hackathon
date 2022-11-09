@@ -3,8 +3,8 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     proxy: {
-      '/': {
-        target: 'http://45.153.231.237:5000',
+      '/back': {
+        target: 'http://45.153.231.237:5000/',
         changeOrigin: true,
       },
       '/posts': {
