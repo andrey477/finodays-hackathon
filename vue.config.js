@@ -4,7 +4,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/api': {
-        target: '8.8.8.8',
+        target: 'http://spigin.ru:5000',
         changeOrigin: true,
       },
       '/posts': {

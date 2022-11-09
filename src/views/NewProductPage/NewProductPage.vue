@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <FiltersBlock />
+  </div>
 </template>
 
 <script lang="ts">
@@ -7,8 +9,11 @@ import Component from 'vue-class-component';
 import Vue from 'vue';
 import { Filter } from '@/types/filter';
 import { getFilterBlocks } from '@/api/filter';
-
-@Component
+import FiltersBlock from '@/components/FiltersBlock/FiltersBlock.vue';
+import { getPosts, testApi } from "@/api/fake";
+@Component({
+  components: { FiltersBlock },
+})
 export default class NewProductPage extends Vue {
   filters: Filter.Response[] = [];
 
@@ -17,7 +22,9 @@ export default class NewProductPage extends Vue {
   loading = true;
 
   created(): void {
-    this.fetchFilterBlocks();
+    // this.fetchFilterBlocks();
+    this.fetchFakeApi();
+    this.fetchFakeApi1();
   }
 
   async fetchFilterBlocks(): Promise<void> {
@@ -31,13 +38,21 @@ export default class NewProductPage extends Vue {
     }
   }
 
-  // // TODO delete
-  // async fetchFakeApi() {
-  //   try {
-  //     this.filters = await getPosts();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  // TODO delete
+  async fetchFakeApi() {
+    try {
+      await testApi();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async fetchFakeApi1() {
+    try {
+      await getPosts();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 </script>

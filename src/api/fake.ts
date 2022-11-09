@@ -10,3 +10,12 @@ export const getPosts = async (): Promise<any[]> => {
 
   return [];
 };
+
+export const testApi = async (): Promise<any> => {
+  try {
+    const { data } = await api.get('/');
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
