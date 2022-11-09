@@ -15,7 +15,7 @@ export const getPosts = async (): Promise<any[]> => {
 
 export const testApi = async (): Promise<any> => {
   try {
-    const { data } = await api.get('http://spigin.ru:5000/');
+    const { data } = await api.get('http://45.153.231.237:5000/');
     return data;
   } catch (error) {
     console.error(error);
