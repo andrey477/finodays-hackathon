@@ -3,12 +3,8 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     proxy: {
-      '/back': {
+      '/api': {
         target: 'http://45.153.231.237:5000/',
-        changeOrigin: true,
-      },
-      '/posts': {
-        target: 'https://jsonplaceholder.typicode.com',
         changeOrigin: true,
       },
     },

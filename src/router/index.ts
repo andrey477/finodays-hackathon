@@ -5,6 +5,7 @@ import { RouteNames } from '@/router/routeNames';
 import MortgagePage from '@/views/MortgagePage/MortgagePage.vue';
 import AboutPage from '@/views/AboutPage/AboutPage.vue';
 import NewMortgagePage from '@/views/NewMortgagePage/NewMortgagePage.vue';
+import MortgagesPage from '@/views/MortgagesPage/MortgagesPage.vue';
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,11 @@ const routes: Array<RouteConfig> = [
     path: '/mortgage',
     name: RouteNames.MORTGAGE,
     component: MortgagePage,
+  },
+  {
+    path: '/mortgages',
+    name: RouteNames.MORTGAGES,
+    component: MortgagesPage,
   },
   {
     path: '/about',

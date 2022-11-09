@@ -4,7 +4,7 @@ import { RouteNames } from '@/router/routeNames';
 export const navigation: Navigation[] = [
   {
     name: 'Ипотека',
-    route: RouteNames.MORTGAGE,
+    route: RouteNames.MORTGAGES,
   },
   {
     name: 'О нас',
