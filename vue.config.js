@@ -3,8 +3,12 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     proxy: {
+      // '/api': {
+      //   target: 'http://45.153.231.237:5000/',
+      //   changeOrigin: true,
+      // },
       '/api': {
-        target: 'http://45.153.231.237:5000/',
+        target: 'https://spigin.ru:5000',
         changeOrigin: true,
       },
     },

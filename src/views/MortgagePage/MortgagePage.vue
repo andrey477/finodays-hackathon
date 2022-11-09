@@ -54,7 +54,7 @@
 import Component from 'vue-class-component';
 import Vue from 'vue';
 import { CreditApplication } from '@/types/creditApplication';
-import { getMortgage } from '@/api/mortgage';
+import { getMortgage, testApi } from '@/api/mortgage';
 import { Watch } from 'vue-property-decorator';
 
 @Component
@@ -75,6 +75,7 @@ export default class MortgagePage extends Vue {
 
   created(): void {
     this.id = this.$route.params.id ?? '';
+    testApi();
     this.fetchMortgage();
   }
 

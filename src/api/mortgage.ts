@@ -36,3 +36,11 @@ export const getMortgage = async (
 
   return null;
 };
+
+export const testApi = async () => {
+  try {
+    await api.get('/api/blocks');
+  } catch (error) {
+    console.log(error);
+  }
+};
