@@ -13,22 +13,22 @@ export const createNewMortgage = async (
   }
 };
 
-export const getAllMortgages = async (): Promise<Mortgage.Data[]> => {
+export const getAllMortgages = async (): Promise<Mortgage.Data | null> => {
   try {
-    const { data } = await api.get('/api/mortgages');
+    const { data } = await api.get('/api/blocks');
     return data;
   } catch (error) {
     console.error(error);
   }
 
-  return [];
+  return null;
 };
 
 export const getMortgage = async (
   id: string
 ): Promise<CreditApplication.Mortgage | null> => {
   try {
-    const { data } = await api.get('/api/mortgage', { params: { id } });
+    const { data } = await api.post('/api/blocks', { id });
     return data;
   } catch (error) {
     console.error(error);

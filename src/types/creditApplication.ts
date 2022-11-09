@@ -13,11 +13,15 @@ export declare namespace CreditApplication {
   }
 
   interface Mortgage {
+    result: Result;
+  }
+
+  interface Result {
     name: string;
-    maxSum: number;
+    max_sum: number;
     percent: number;
     years: number;
-    strategy: StrategyFields[];
+    filters: StrategyFields[];
   }
 
   interface StrategyFields {

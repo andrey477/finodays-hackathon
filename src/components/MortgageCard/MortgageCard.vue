@@ -17,7 +17,7 @@ import { RouteNames } from '@/router/routeNames';
 
 @Component
 export default class MortgageCard extends Vue {
-  @Prop({ type: Object, required: true }) readonly mortgage: Mortgage.Data;
+  @Prop({ type: Object, required: true }) readonly mortgage: Mortgage.Result;
 
   redirectToMortgagePage(): void {
     this.$router.push({

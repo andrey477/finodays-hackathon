@@ -1,9 +1,12 @@
 <template>
   <div>
-    <h1 v-if="mortgage && mortgage.name">{{ mortgage.name }}</h1>
-    <div v-if="mortgage && mortgage.percent">{{ mortgage.percent }}</div>
-    <div v-if="mortgage && mortgage.maxSum">{{ mortgage.maxSum }}</div>
-    <div v-if="mortgage && mortgage.years">{{ mortgage.years }}</div>
+    <div v-if="mortgage && mortgage.result">
+      <h1 v-if="mortgage.result.name">{{ mortgage.result.name }}</h1>
+      <div v-if="mortgage.result.percent">{{ mortgage.result.percent }}</div>
+      <div v-if="mortgage.result.max_sum">{{ mortgage.result.max_sum }}</div>
+      <div v-if="mortgage.result.years">{{ mortgage.result.years }}</div>
+    </div>
+
     <v-form>
       <v-row>
         <v-col>
@@ -32,7 +35,10 @@
         </v-col>
       </v-row>
       <div v-if="mortgage">
-        <v-row v-for="(field, index) in mortgage.strategy" :key="field.name">
+        <v-row
+          v-for="(field, index) in mortgage.result.filters"
+          :key="field.name"
+        >
           <v-col>
             <v-text-field
               v-model="creditApplication.additionalFields[index].value"
@@ -54,7 +60,7 @@
 import Component from 'vue-class-component';
 import Vue from 'vue';
 import { CreditApplication } from '@/types/creditApplication';
-import { getMortgage, testApi } from '@/api/mortgage';
+import { getMortgage } from '@/api/mortgage';
 import { Watch } from 'vue-property-decorator';
 
 @Component
@@ -74,8 +80,8 @@ export default class MortgagePage extends Vue {
   id = '';
 
   created(): void {
-    this.id = this.$route.params.id ?? '';
-    testApi();
+    const id = this.$route.query.id;
+    this.id = id ? String(id) : '';
     this.fetchMortgage();
   }
 
@@ -87,18 +93,7 @@ export default class MortgagePage extends Vue {
   async fetchMortgage(): Promise<void> {
     try {
       this.loading = true;
-      // this.mortgage = await getMortgage(this.id);
-      this.mortgage = {
-        name: 'fds',
-        years: 32,
-        maxSum: 43,
-        percent: 43,
-        strategy: [
-          {
-            name: 'Стаж',
-          },
-        ],
-      };
+      this.mortgage = await getMortgage(this.id);
       this.addFields();
     } catch (error) {
       console.error(error);
@@ -108,12 +103,14 @@ export default class MortgagePage extends Vue {
   }
 
   addFields(): void {
-    this.mortgage?.strategy.forEach((item, index) => {
-      this.creditApplication.additionalFields[index] = {
-        field: item.name,
-        value: '',
-      };
-    });
+    if (this.mortgage && this.mortgage.result) {
+      this.mortgage?.result.filters.forEach((item, index) => {
+        this.creditApplication.additionalFields[index] = {
+          field: item.name,
+          value: '',
+        };
+      });
+    }
   }
 
   // async handleSubmit(): void {

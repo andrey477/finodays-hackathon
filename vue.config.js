@@ -8,7 +8,7 @@ module.exports = {
       //   changeOrigin: true,
       // },
       '/api': {
-        target: 'https://spigin.ru:5000',
+        target: 'http://spigin.ru:5000',
         changeOrigin: true,
       },
     },
