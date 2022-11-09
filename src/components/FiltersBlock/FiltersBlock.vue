@@ -5,25 +5,25 @@
       <v-row>
         <v-col>
           <v-text-field
-            v-for="num in filters.length"
+            v-for="num in strategies.length"
             :key="num - 1"
-            v-model="filters[num - 1].name"
+            v-model="strategies[num - 1].name"
             label="Название стратегии"
           />
         </v-col>
         <v-col>
           <v-text-field
-            v-for="num in filters.length"
+            v-for="num in strategies.length"
             :key="num - 1"
-            v-model="filters[num - 1].operation"
+            v-model="strategies[num - 1].operation"
             label="Операнд"
           />
         </v-col>
         <v-col>
           <v-text-field
-            v-for="num in filters.length"
+            v-for="num in strategies.length"
             :key="num - 1"
-            v-model="filters[num - 1].value"
+            v-model="strategies[num - 1].value"
             label="Значение"
           />
         </v-col>
@@ -41,7 +41,7 @@ import { Strategy } from '@/types/strategy';
 
 @Component
 export default class FiltersBlock extends Vue {
-  filters: Strategy.Filter[] = [];
+  strategies: Strategy.Filter[] = [];
 
   emptyFilter: Strategy.Filter = {
     name: '',
@@ -50,16 +50,17 @@ export default class FiltersBlock extends Vue {
   };
 
   created() {
-    this.filters.push({ ...this.emptyFilter });
+    this.strategies.push({ ...this.emptyFilter });
   }
 
   addCount(): void {
-    this.filters.push({ ...this.emptyFilter });
+    this.strategies.push({ ...this.emptyFilter });
   }
 
-  @Watch('filters', { deep: true })
+  @Watch('strategies', { deep: true })
   changeForm(value: any) {
-    console.log(this.filters);
+    console.log(this.strategies);
+    this.$emit('changeStrategies', this.strategies);
   }
 }
 </script>

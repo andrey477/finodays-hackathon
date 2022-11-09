@@ -56,6 +56,7 @@ export default class MortgageBlock extends Vue {
   @Watch('mortgage', { deep: true })
   changeMortgage(value: any) {
     console.log(this.mortgage);
+    this.$emit('changeMortgage', this.mortgage);
   }
 }
 </script>

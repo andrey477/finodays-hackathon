@@ -1,4 +1,9 @@
 export declare namespace Strategy {
+  interface Request {
+    strategy: Filter[];
+    mortgage: Mortgage;
+  }
+
   interface Filter {
     name: string;
     operation: string;
