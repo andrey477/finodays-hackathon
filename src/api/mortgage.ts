@@ -1,6 +1,7 @@
 import { Strategy } from '@/types/strategy';
 import { api } from '@/api/index';
 import { Mortgage } from '@/types/mortgage';
+import { CreditApplication } from '@/types/creditApplication';
 
 export const createNewMortgage = async (
   body: Partial<Strategy.Request>
@@ -21,4 +22,17 @@ export const getAllMortgages = async (): Promise<Mortgage.Data[]> => {
   }
 
   return [];
+};
+
+export const getMortgage = async (
+  id: string
+): Promise<CreditApplication.Mortgage | null> => {
+  try {
+    const { data } = await api.get('/api/mortgage', { params: { id } });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+
+  return null;
 };
