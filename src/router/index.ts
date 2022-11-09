@@ -1,28 +1,38 @@
-import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
+import Home from '../views/Home/Home.vue';
+import { RouteNames } from '@/router/routeNames';
+import CreditPage from '@/views/CreditPage/CreditPage.vue';
+import MortgagePage from '@/views/MortgagePage/MortgagePage.vue';
+import AboutPage from '@/views/AboutPage/AboutPage.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: '/credit',
+    name: RouteNames.CREDIT,
+    component: CreditPage,
+  },
+  {
+    path: '/mortgage',
+    name: RouteNames.MORTGAGE,
+    component: MortgagePage,
+  },
+  {
+    path: '/about',
+    name: RouteNames.ABOUT,
+    component: AboutPage,
   },
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes,
 });
