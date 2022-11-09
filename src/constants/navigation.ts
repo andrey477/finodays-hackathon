@@ -14,4 +14,8 @@ export const navigation: Navigation[] = [
     name: 'О нас',
     route: RouteNames.ABOUT,
   },
+  {
+    name: 'Новый продукт',
+    route: RouteNames.NEW_PRODUCT,
+  },
 ];
