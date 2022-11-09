@@ -10,7 +10,7 @@ import Vue from 'vue';
 import { Filter } from '@/types/filter';
 import { getFilterBlocks } from '@/api/filter';
 import FiltersBlock from '@/components/FiltersBlock/FiltersBlock.vue';
-import { getPosts, testApi } from "@/api/fake";
+import { getPosts, testApi } from '@/api/fake';
 @Component({
   components: { FiltersBlock },
 })
