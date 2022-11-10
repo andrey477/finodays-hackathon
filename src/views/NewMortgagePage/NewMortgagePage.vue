@@ -4,7 +4,7 @@
     <FiltersBlock @changeStrategies="handleChangeStrategies" />
     <v-row class="mt-6">
       <v-col align="right">
-        <v-btn @click="fetchNewMortgage" color="primary">Создать</v-btn>
+        <v-btn @click="fetchNewMortgage" color="primary" :loading="loading">Создать</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -24,7 +24,7 @@ import { RouteNames } from '@/router/routeNames';
 export default class NewMortgagePage extends Vue {
   error = false;
 
-  loading = true;
+  loading = false;
 
   requestBody: Partial<Strategy.Request> = {
     mortgage: undefined,
