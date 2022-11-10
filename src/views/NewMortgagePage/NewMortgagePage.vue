@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <v-container class="container">
     <MortgageBlock @changeMortgage="handleChangeMortgage" />
     <FiltersBlock @changeStrategies="handleChangeStrategies" />
     <v-row class="mt-6">
-      <v-col>
-        <v-btn @click="fetchNewMortgage">Создать</v-btn>
+      <v-col align="right">
+        <v-btn @click="fetchNewMortgage" color="primary">Создать</v-btn>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -52,3 +52,9 @@ export default class NewMortgagePage extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.container {
+  max-width: 800px;
+}
+</style>

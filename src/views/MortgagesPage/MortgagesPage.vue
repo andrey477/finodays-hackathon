@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>Ипотеки</h1>
+    <Loader v-if="loading" />
     <MortgageCard
+      v-else
       v-for="mortgage in mortgages.result"
       :key="mortgage.id"
       :mortgage="mortgage"
@@ -14,9 +16,10 @@ import Component from 'vue-class-component';
 import Vue from 'vue';
 import { Mortgage } from '@/types/mortgage';
 import MortgageCard from '@/components/MortgageCard/MortgageCard.vue';
-import { getAllMortgages } from "@/api/mortgage";
+import { getAllMortgages } from '@/api/mortgage';
+import Loader from '@/components/Loader/Loader.vue';
 @Component({
-  components: { MortgageCard },
+  components: { Loader, MortgageCard },
 })
 export default class MortgagesPage extends Vue {
   mortgages: Mortgage.Data | null = null;

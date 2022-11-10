@@ -29,7 +29,7 @@
         </v-col>
       </v-row>
     </v-form>
-    <v-btn @click="addCount">Добавить</v-btn>
+    <v-btn @click="addCount" color="primary">Добавить</v-btn>
   </div>
 </template>
 

@@ -13,6 +13,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Header from '@/components/Header/Header.vue';
+import './assets/colors.scss';
 import './assets/style.scss';
 
 @Component({
