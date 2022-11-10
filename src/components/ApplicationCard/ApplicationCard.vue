@@ -16,7 +16,7 @@
       <result
         :result="result.accepted"
         success-text="Одобрена"
-        canceled-text="Отклонена"
+        :canceled-text="result.result"
       />
     </div>
   </v-card>
@@ -34,15 +34,11 @@ import Result from '@/components/Result/Result.vue';
 export default class ApplicationCard extends Vue {
   @Prop({ type: Object, required: true })
   readonly result: CreditApplication.All.Result;
-
-  created() {
-    console.log(this.result);
-  }
 }
 </script>
 
 <style scoped lang="scss">
 .container {
-  max-width: 250px;
+  max-width: 400px;
 }
 </style>

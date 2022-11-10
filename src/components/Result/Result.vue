@@ -1,8 +1,8 @@
 <template>
   <v-alert v-if="result" dense text type="success">
-    Ваша заявка одобрена
+    {{ successText }}
   </v-alert>
-  <v-alert v-else dense outlined type="error"> В заявке отказано </v-alert>
+  <v-alert v-else dense outlined type="error"> {{ canceledText }} </v-alert>
 </template>
 
 <script lang="ts">

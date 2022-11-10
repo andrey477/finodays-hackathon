@@ -69,10 +69,7 @@
           </v-col>
         </v-row>
         <div v-if="mortgage">
-          <v-row
-            v-for="(field, index) in mortgage.result.filters"
-            :key="field.name"
-          >
+          <v-row v-for="(field, index) in preparedFilters" :key="field.name">
             <v-col>
               <v-text-field
                 v-model="creditApplication.additionalFields[index].value"
@@ -132,6 +129,12 @@ export default class MortgagePage extends Vue {
   get id(): string {
     const id = this.$route.query.id;
     return id ? String(id) : '';
+  }
+
+  get preparedFilters() {
+    return this.mortgage?.result.filters.filter(({ name }) => {
+      return !name.startsWith('MIN') && !name.startsWith('MAX');
+    });
   }
 
   @Watch('creditApplication', { deep: true })
