@@ -12,12 +12,13 @@
           />
         </v-col>
         <v-col>
-          <v-text-field
+          <v-select
             v-for="num in strategies.length"
             :key="num - 1"
             v-model="strategies[num - 1].operation"
+            :items="operands"
             label="Операнд"
-          />
+          ></v-select>
         </v-col>
         <v-col>
           <v-text-field
@@ -42,6 +43,8 @@ import { Strategy } from '@/types/strategy';
 @Component
 export default class FiltersBlock extends Vue {
   strategies: Strategy.Filter[] = [];
+
+  operands = ['>', '<', '='];
 
   emptyFilter: Strategy.Filter = {
     name: '',
