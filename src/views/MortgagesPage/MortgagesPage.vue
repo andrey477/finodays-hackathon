@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container class="container">
     <h1>Ипотеки</h1>
     <Loader v-if="loading" />
     <MortgageCard
@@ -8,7 +8,7 @@
       :key="mortgage.id"
       :mortgage="mortgage"
     />
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -42,3 +42,9 @@ export default class MortgagesPage extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.container {
+  max-width: 800px;
+}
+</style>

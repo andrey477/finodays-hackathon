@@ -10,6 +10,7 @@ export const createNewMortgage = async (
     await api.post('/api/mortgage', body);
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -19,9 +20,8 @@ export const getAllMortgages = async (): Promise<Mortgage.Data | null> => {
     return data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
-
-  return null;
 };
 
 export const getMortgage = async (
@@ -32,22 +32,20 @@ export const getMortgage = async (
     return data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
-
-  return null;
 };
 
 export const sendCreditApplication = async (
   body: CreditApplication.Data
-): Promise<CreditApplication.Response | null> => {
+): Promise<CreditApplication.Response> => {
   try {
     const { data } = await api.post('/api/application', body);
     return data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
-
-  return null;
 };
 
 export const testApi = async () => {

@@ -1,58 +1,88 @@
 <template>
   <div>
-    <div v-if="mortgage && mortgage.result">
-      <h1 v-if="mortgage.result.name">{{ mortgage.result.name }}</h1>
-      <div v-if="mortgage.result.percent">{{ mortgage.result.percent }}</div>
-      <div v-if="mortgage.result.max_sum">{{ mortgage.result.max_sum }}</div>
-      <div v-if="mortgage.result.years">{{ mortgage.result.years }}</div>
+    <v-container class="container">
+      <h1 v-if="mortgage.result.name" class="title-text">
+        {{ mortgage.result.name }}
+      </h1>
+    </v-container>
+    <div class="information mt-6">
+      <sheet v-if="mortgage.result.percent">
+        <div class="card-sheet pt-4">
+          <h1 class="value">{{ mortgage.result.percent }}</h1>
+          <strong>Процентная ставка</strong>
+        </div>
+      </sheet>
+      <sheet v-if="mortgage.result.max_sum">
+        <div class="card-sheet pt-4">
+          <h1 class="value">{{ mortgage.result.max_sum }}</h1>
+          <strong>Максимальная сумма кредита</strong>
+        </div>
+      </sheet>
+      <sheet v-if="mortgage.result.years">
+        <div class="card-sheet pt-4">
+          <h1 class="value">{{ mortgage.result.years }}</h1>
+          <strong>Максимальный срок кредита</strong>
+        </div>
+      </sheet>
     </div>
+    <v-container class="container mt-10">
+      <!--    <div v-if="mortgage && mortgage.result">-->
+      <!--      <h1 v-if="mortgage.result.name">{{ mortgage.result.name }}</h1>-->
+      <!--      <div v-if="mortgage.result.percent">{{ mortgage.result.percent }}</div>-->
+      <!--      <div v-if="mortgage.result.max_sum">{{ mortgage.result.max_sum }}</div>-->
+      <!--      <div v-if="mortgage.result.years">{{ mortgage.result.years }}</div>-->
+      <!--    </div>-->
 
-    <v-form @submit.prevent="handleSubmit">
-      <v-row>
-        <v-col>
-          <v-text-field v-model="creditApplication.lastName" label="Фамилия" />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field v-model="creditApplication.firstName" label="Имя" />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="creditApplication.middleName"
-            label="Отчество"
-          />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="creditApplication.phoneNumber"
-            label="Номер телефона"
-          />
-        </v-col>
-      </v-row>
-      <div v-if="mortgage">
-        <v-row
-          v-for="(field, index) in mortgage.result.filters"
-          :key="field.name"
-        >
+      <v-form @submit.prevent="handleSubmit">
+        <v-row>
           <v-col>
             <v-text-field
-              v-model="creditApplication.additionalFields[index].value"
-              :label="field.name"
+              v-model="creditApplication.lastName"
+              label="Фамилия"
             />
           </v-col>
         </v-row>
-      </div>
-      <v-row>
-        <v-col>
-          <v-btn type="submit">Отправить</v-btn>
-        </v-col>
-      </v-row>
-    </v-form>
+        <v-row>
+          <v-col>
+            <v-text-field v-model="creditApplication.firstName" label="Имя" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field
+              v-model="creditApplication.middleName"
+              label="Отчество"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field
+              v-model="creditApplication.phoneNumber"
+              label="Номер телефона"
+            />
+          </v-col>
+        </v-row>
+        <div v-if="mortgage">
+          <v-row
+            v-for="(field, index) in mortgage.result.filters"
+            :key="field.name"
+          >
+            <v-col>
+              <v-text-field
+                v-model="creditApplication.additionalFields[index].value"
+                :label="field.name"
+              />
+            </v-col>
+          </v-row>
+        </div>
+        <v-row>
+          <v-col align="right">
+            <v-btn type="submit" color="primary">Отправить</v-btn>
+          </v-col>
+        </v-row>
+      </v-form>
+    </v-container>
   </div>
 </template>
 
@@ -62,8 +92,10 @@ import Vue from 'vue';
 import { CreditApplication } from '@/types/creditApplication';
 import { getMortgage, sendCreditApplication } from '@/api/mortgage';
 import { Watch } from 'vue-property-decorator';
-
-@Component
+import Sheet from '@/components/Sheet/Sheet.vue';
+@Component({
+  components: { Sheet },
+})
 export default class MortgagePage extends Vue {
   creditApplication: CreditApplication.Data = {
     firstName: '',
@@ -133,3 +165,34 @@ export default class MortgagePage extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+@import 'src/assets/colors.scss';
+.container {
+  max-width: 800px;
+}
+
+.card-sheet {
+  text-align: center;
+}
+
+.value {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 48px;
+  color: $color-secondary;
+}
+
+.information {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.title-text {
+  color: $color-tertiary;
+  text-align: center;
+  font-size: 48px;
+}
+</style>
