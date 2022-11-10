@@ -7,6 +7,7 @@ import AboutPage from '@/views/AboutPage/AboutPage.vue';
 import NewMortgagePage from '@/views/NewMortgagePage/NewMortgagePage.vue';
 import MortgagesPage from '@/views/MortgagesPage/MortgagesPage.vue';
 import ApplicationsPage from '@/views/ApplicationsPage/ApplicationsPage.vue';
+import EditPage from '@/views/EditPage/EditPage.vue';
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,11 @@ const routes: Array<RouteConfig> = [
     path: '/applications',
     name: RouteNames.APPLICATIONS,
     component: ApplicationsPage,
+  },
+  {
+    path: '/edit',
+    name: RouteNames.EDIT,
+    component: EditPage,
   },
 ];
 
