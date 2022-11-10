@@ -26,29 +26,28 @@
       </sheet>
     </div>
     <v-container class="container mt-10">
-      <!--    <div v-if="mortgage && mortgage.result">-->
-      <!--      <h1 v-if="mortgage.result.name">{{ mortgage.result.name }}</h1>-->
-      <!--      <div v-if="mortgage.result.percent">{{ mortgage.result.percent }}</div>-->
-      <!--      <div v-if="mortgage.result.max_sum">{{ mortgage.result.max_sum }}</div>-->
-      <!--      <div v-if="mortgage.result.years">{{ mortgage.result.years }}</div>-->
-      <!--    </div>-->
       <v-row class="mt-4">
         <v-col>
           <result v-if="response" :result="response.result" />
         </v-col>
       </v-row>
-      <v-form @submit.prevent="handleSubmit">
+      <v-form ref="form" @submit.prevent="handleSubmit">
         <v-row>
           <v-col>
             <v-text-field
               v-model="creditApplication.lastName"
               label="Фамилия"
+              :rules="[requiredRule]"
             />
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <v-text-field v-model="creditApplication.firstName" label="Имя" />
+            <v-text-field
+              v-model="creditApplication.firstName"
+              label="Имя"
+              :rules="[requiredRule]"
+            />
           </v-col>
         </v-row>
         <v-row>
@@ -56,6 +55,7 @@
             <v-text-field
               v-model="creditApplication.middleName"
               label="Отчество"
+              :rules="[requiredRule]"
             />
           </v-col>
         </v-row>
@@ -64,6 +64,7 @@
             <v-text-field
               v-model="creditApplication.phoneNumber"
               label="Номер телефона"
+              :rules="[requiredRule]"
             />
           </v-col>
         </v-row>
@@ -76,6 +77,7 @@
               <v-text-field
                 v-model="creditApplication.additionalFields[index].value"
                 :label="field.name"
+                :rules="[requiredRule]"
               />
             </v-col>
           </v-row>
@@ -98,6 +100,7 @@ import { getMortgage, sendCreditApplication } from '@/api/mortgage';
 import { Watch } from 'vue-property-decorator';
 import Sheet from '@/components/Sheet/Sheet.vue';
 import Result from '@/components/Result/Result.vue';
+import { requiredRule } from "@/utils/utils";
 @Component({
   components: { Result, Sheet },
 })
@@ -118,6 +121,8 @@ export default class MortgagePage extends Vue {
   mortgage: CreditApplication.Mortgage | null = null;
 
   response: CreditApplication.Response | null = null;
+
+  requiredRule = requiredRule;
 
   created(): void {
     this.fetchMortgage();
@@ -161,7 +166,12 @@ export default class MortgagePage extends Vue {
   async handleSubmit(): Promise<void> {
     try {
       this.loadingApplication = true;
-      this.response = await sendCreditApplication(this.creditApplication);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const valid = this.$refs?.form?.validate();
+      if (valid) {
+        this.response = await sendCreditApplication(this.creditApplication);
+      }
     } catch (error) {
       console.error(error);
     } finally {
