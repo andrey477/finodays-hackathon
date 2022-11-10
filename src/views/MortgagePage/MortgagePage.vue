@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="mortgage">
     <v-container class="container">
       <h1 v-if="mortgage.result.name" class="title-text">
         {{ mortgage.result.name }}
@@ -32,7 +32,11 @@
       <!--      <div v-if="mortgage.result.max_sum">{{ mortgage.result.max_sum }}</div>-->
       <!--      <div v-if="mortgage.result.years">{{ mortgage.result.years }}</div>-->
       <!--    </div>-->
-
+      <v-row class="mt-4">
+        <v-col>
+          <result v-if="response" :result="response.result" />
+        </v-col>
+      </v-row>
       <v-form @submit.prevent="handleSubmit">
         <v-row>
           <v-col>
@@ -93,8 +97,9 @@ import { CreditApplication } from '@/types/creditApplication';
 import { getMortgage, sendCreditApplication } from '@/api/mortgage';
 import { Watch } from 'vue-property-decorator';
 import Sheet from '@/components/Sheet/Sheet.vue';
+import Result from '@/components/Result/Result.vue';
 @Component({
-  components: { Sheet },
+  components: { Result, Sheet },
 })
 export default class MortgagePage extends Vue {
   creditApplication: CreditApplication.Data = {
