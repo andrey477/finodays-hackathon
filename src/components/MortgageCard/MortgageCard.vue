@@ -41,6 +41,9 @@
       <v-btn @click="redirectToMortgagePage" outlined rounded text>
         Оформить
       </v-btn>
+      <v-btn @click="redirectToEditPage" outlined rounded text>
+        Редактировать
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -61,6 +64,13 @@ export default class MortgageCard extends Vue {
   redirectToMortgagePage(): void {
     this.$router.push({
       name: RouteNames.MORTGAGE,
+      query: { id: String(this.mortgage.id) },
+    });
+  }
+
+  redirectToEditPage(): void {
+    this.$router.push({
+      name: RouteNames.EDIT,
       query: { id: String(this.mortgage.id) },
     });
   }

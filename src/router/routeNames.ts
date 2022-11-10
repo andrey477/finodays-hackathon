@@ -4,4 +4,5 @@ export enum RouteNames {
   ABOUT = 'ABOUT',
   NEW_PRODUCT = 'NEW_PRODUCT',
   APPLICATIONS = 'APPLICATIONS',
+  EDIT = 'EDIT',
 }

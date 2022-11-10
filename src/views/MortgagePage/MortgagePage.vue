@@ -100,7 +100,7 @@ import { getMortgage, sendCreditApplication } from '@/api/mortgage';
 import { Watch } from 'vue-property-decorator';
 import Sheet from '@/components/Sheet/Sheet.vue';
 import Result from '@/components/Result/Result.vue';
-import { requiredRule } from "@/utils/utils";
+import { requiredRule } from '@/utils/utils';
 @Component({
   components: { Result, Sheet },
 })

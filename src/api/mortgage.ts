@@ -59,6 +59,17 @@ export const getAllApplication =
     }
   };
 
+export const updateMortgage = async (
+  body: Partial<Strategy.Request>
+): Promise<void> => {
+  try {
+    await api.put('/api/mortgage', body);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const testApi = async () => {
   try {
     await api.get('/api/blocks');

@@ -37,12 +37,14 @@
 <script lang="ts">
 import Component from 'vue-class-component';
 import Vue from 'vue';
-import { Watch } from 'vue-property-decorator';
+import { Prop, Watch } from 'vue-property-decorator';
 import { Strategy } from '@/types/strategy';
-import { emailRule } from "@/utils/utils";
+import { emailRule } from '@/utils/utils';
+import { CreditApplication } from '@/types/creditApplication';
 
 @Component
 export default class FiltersBlock extends Vue {
+  @Prop({ type: Object }) readonly initMortgage: CreditApplication.Mortgage;
   strategies: Strategy.Filter[] = [];
 
   operands = ['>', '<', '='];
@@ -57,6 +59,17 @@ export default class FiltersBlock extends Vue {
 
   created() {
     this.strategies.push({ ...this.emptyFilter });
+    if (
+      this.initMortgage &&
+      this.initMortgage.result &&
+      this.initMortgage.result.filters.length
+    ) {
+      this.strategies = this.initMortgage.result.filters.map((item) => ({
+        value: item.value_const,
+        operation: item.operation,
+        name: item.name,
+      }));
+    }
   }
 
   addCount(): void {

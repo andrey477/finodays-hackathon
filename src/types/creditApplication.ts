@@ -29,6 +29,8 @@ export declare namespace CreditApplication {
   interface StrategyFields {
     id: string;
     name: string;
+    operation: string;
+    value_const: string;
   }
 
   interface Response {
