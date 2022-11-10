@@ -31,6 +31,7 @@
       </v-row>
     </v-form>
     <v-btn @click="addCount" color="primary">Добавить</v-btn>
+    <v-btn @click="remove" color="error" class="ml-6">Удалить</v-btn>
   </div>
 </template>
 
@@ -74,6 +75,10 @@ export default class FiltersBlock extends Vue {
 
   addCount(): void {
     this.strategies.push({ ...this.emptyFilter });
+  }
+
+  remove(): void {
+    this.strategies.pop();
   }
 
   @Watch('strategies', { deep: true })
