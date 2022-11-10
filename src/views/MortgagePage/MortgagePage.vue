@@ -165,7 +165,7 @@ export default class MortgagePage extends Vue {
 
   get successText() {
     if (this.response?.limit) {
-      return `Вам одобрено ${this.response.limit}}`;
+      return `Вам одобрено ${this.response.limit}`;
     } else {
       return 'Ваша заявка одобрена';
     }
