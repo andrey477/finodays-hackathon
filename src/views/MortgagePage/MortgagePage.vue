@@ -7,7 +7,7 @@
       <div v-if="mortgage.result.years">{{ mortgage.result.years }}</div>
     </div>
 
-    <v-form>
+    <v-form @submit.prevent="handleSubmit">
       <v-row>
         <v-col>
           <v-text-field v-model="creditApplication.lastName" label="Фамилия" />
@@ -60,7 +60,7 @@
 import Component from 'vue-class-component';
 import Vue from 'vue';
 import { CreditApplication } from '@/types/creditApplication';
-import { getMortgage } from '@/api/mortgage';
+import { getMortgage, sendCreditApplication } from '@/api/mortgage';
 import { Watch } from 'vue-property-decorator';
 
 @Component
@@ -70,19 +70,26 @@ export default class MortgagePage extends Vue {
     lastName: '',
     middleName: '',
     phoneNumber: '',
+    blockId: '',
     additionalFields: [],
   };
 
   loading = false;
 
+  loadingApplication = false;
+
   mortgage: CreditApplication.Mortgage | null = null;
 
-  id = '';
+  response: CreditApplication.Response | null = null;
 
   created(): void {
-    const id = this.$route.query.id;
-    this.id = id ? String(id) : '';
     this.fetchMortgage();
+    this.creditApplication.blockId = this.id;
+  }
+
+  get id(): string {
+    const id = this.$route.query.id;
+    return id ? String(id) : '';
   }
 
   @Watch('creditApplication', { deep: true })
@@ -106,6 +113,7 @@ export default class MortgagePage extends Vue {
     if (this.mortgage && this.mortgage.result) {
       this.mortgage?.result.filters.forEach((item, index) => {
         this.creditApplication.additionalFields[index] = {
+          id: item.id,
           field: item.name,
           value: '',
         };
@@ -113,8 +121,15 @@ export default class MortgagePage extends Vue {
     }
   }
 
-  // async handleSubmit(): void {
-  //
-  // }
+  async handleSubmit(): Promise<void> {
+    try {
+      this.loadingApplication = true;
+      this.response = await sendCreditApplication(this.creditApplication);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingApplication = false;
+    }
+  }
 }
 </script>

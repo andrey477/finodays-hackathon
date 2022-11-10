@@ -37,6 +37,19 @@ export const getMortgage = async (
   return null;
 };
 
+export const sendCreditApplication = async (
+  body: CreditApplication.Data
+): Promise<CreditApplication.Response | null> => {
+  try {
+    const { data } = await api.post('/api/application', body);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+
+  return null;
+};
+
 export const testApi = async () => {
   try {
     await api.get('/api/blocks');

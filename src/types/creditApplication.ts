@@ -1,5 +1,6 @@
 export declare namespace CreditApplication {
   interface Data {
+    blockId: string;
     firstName: string;
     lastName: string;
     middleName: string;
@@ -8,6 +9,7 @@ export declare namespace CreditApplication {
   }
 
   interface AdditionalField {
+    id: string;
     field: string;
     value: string;
   }
@@ -25,6 +27,11 @@ export declare namespace CreditApplication {
   }
 
   interface StrategyFields {
+    id: string;
     name: string;
+  }
+
+  interface Response {
+    result: boolean;
   }
 }
