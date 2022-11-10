@@ -13,5 +13,11 @@ import { Prop } from 'vue-property-decorator';
 @Component
 export default class Result extends Vue {
   @Prop({ type: Boolean, required: true }) readonly result: boolean;
+
+  @Prop({ type: String, default: 'Ваша заявка одобрена' })
+  readonly successText: string;
+
+  @Prop({ type: String, default: 'Ваша заявка отклонена' })
+  readonly canceledText: string;
 }
 </script>

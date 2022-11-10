@@ -6,6 +6,7 @@ import MortgagePage from '@/views/MortgagePage/MortgagePage.vue';
 import AboutPage from '@/views/AboutPage/AboutPage.vue';
 import NewMortgagePage from '@/views/NewMortgagePage/NewMortgagePage.vue';
 import MortgagesPage from '@/views/MortgagesPage/MortgagesPage.vue';
+import ApplicationsPage from '@/views/ApplicationsPage/ApplicationsPage.vue';
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,11 @@ const routes: Array<RouteConfig> = [
     path: '/new-product',
     name: RouteNames.NEW_PRODUCT,
     component: NewMortgagePage,
+  },
+  {
+    path: '/applications',
+    name: RouteNames.APPLICATIONS,
+    component: ApplicationsPage,
   },
 ];
 

@@ -34,4 +34,21 @@ export declare namespace CreditApplication {
   interface Response {
     result: boolean;
   }
+
+  namespace All {
+    interface Data {
+      result: Result[];
+      status: string;
+    }
+
+    interface Result {
+      id: number;
+      accepted: boolean;
+      middle_name: string;
+      name: string;
+      surname: string;
+      phone: string;
+      result: string;
+    }
+  }
 }

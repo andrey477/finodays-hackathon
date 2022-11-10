@@ -6,12 +6,12 @@ export const navigation: Navigation[] = [
     name: 'Ипотека',
     route: RouteNames.MORTGAGES,
   },
-  // {
-  //   name: 'О нас',
-  //   route: RouteNames.ABOUT,
-  // },
   {
     name: 'Новый продукт',
     route: RouteNames.NEW_PRODUCT,
+  },
+  {
+    name: 'Заявки',
+    route: RouteNames.APPLICATIONS,
   },
 ];

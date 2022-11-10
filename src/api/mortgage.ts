@@ -48,6 +48,17 @@ export const sendCreditApplication = async (
   }
 };
 
+export const getAllApplication =
+  async (): Promise<CreditApplication.All.Data> => {
+    try {
+      const { data } = await api.get('/api/application');
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
 export const testApi = async () => {
   try {
     await api.get('/api/blocks');
