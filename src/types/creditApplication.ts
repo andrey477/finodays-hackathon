@@ -5,6 +5,8 @@ export declare namespace CreditApplication {
     lastName: string;
     middleName: string;
     phoneNumber: string;
+    salary: number;
+    credit_request: number;
     additionalFields: AdditionalField[];
   }
 
@@ -35,6 +37,7 @@ export declare namespace CreditApplication {
 
   interface Response {
     result: boolean;
+    limit: number;
   }
 
   namespace All {

@@ -1,11 +1,4 @@
 <template>
-  <!--  <div class="mortgage-card">-->
-  <!--    <div>{{ mortgage.name }}</div>-->
-  <!--    <div>{{ mortgage.maxSum }}</div>-->
-  <!--    <div>{{ mortgage.percent }}</div>-->
-  <!--    <div>{{ mortgage.years }}</div>-->
-  <!--    <v-btn @click="redirectToMortgagePage">Оформить</v-btn>-->
-  <!--  </div>-->
   <v-card class="mx-auto mt-6" max-width="800" outlined>
     <v-list-item three-line>
       <v-list-item-content>
@@ -16,8 +9,7 @@
         <div class="description">
           <span class="description-text">
             Сумма: до
-            <strong class="description-value">{{ mortgage.max_sum }}</strong>
-            млн.
+            <strong class="description-value">{{ mortgage.max_sum }}</strong> рублей
           </span>
         </div>
         <div class="description">

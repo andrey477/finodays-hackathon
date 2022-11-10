@@ -28,7 +28,11 @@
     <v-container class="container mt-10">
       <v-row class="mt-4">
         <v-col>
-          <result v-if="response" :result="response.result" />
+          <result
+            v-if="response"
+            :result="response.result"
+            :success-text="successText"
+          />
         </v-col>
       </v-row>
       <v-form ref="form" @submit.prevent="handleSubmit">
@@ -65,6 +69,26 @@
               v-model="creditApplication.phoneNumber"
               label="Номер телефона"
               :rules="[requiredRule]"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field
+              v-model="creditApplication.salary"
+              label="Зарплата"
+              :rules="[requiredRule]"
+              type="number"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field
+              v-model="creditApplication.credit_request"
+              label="Запрошенная сумма"
+              :rules="[requiredRule]"
+              type="number"
             />
           </v-col>
         </v-row>
@@ -108,6 +132,8 @@ export default class MortgagePage extends Vue {
     middleName: '',
     phoneNumber: '',
     blockId: '',
+    credit_request: 0,
+    salary: 0,
     additionalFields: [],
   };
 
@@ -135,6 +161,14 @@ export default class MortgagePage extends Vue {
     return this.mortgage?.result.filters.filter(({ name }) => {
       return !name.startsWith('MIN') && !name.startsWith('MAX');
     });
+  }
+
+  get successText() {
+    if (this.response?.limit) {
+      return `Вам одобрено ${this.response.limit}}`;
+    } else {
+      return 'Ваша заявка одобрена';
+    }
   }
 
   async fetchMortgage(): Promise<void> {
