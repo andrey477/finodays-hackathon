@@ -16,7 +16,7 @@
         <div class="description">
           <span class="description-text">
             Сумма: до
-            <strong class="description-value">{{ mortgage.maxSum }}</strong>
+            <strong class="description-value">{{ mortgage.max_sum }}</strong>
             млн.
           </span>
         </div>

@@ -6,7 +6,7 @@ export declare namespace Mortgage {
   interface Result {
     id: number;
     name: string;
-    maxSum: number;
+    max_sum: number;
     percent: number;
     years: number;
   }
