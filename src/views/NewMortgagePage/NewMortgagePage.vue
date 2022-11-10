@@ -1,6 +1,9 @@
 <template>
   <v-container class="container">
-    <MortgageBlock @changeMortgage="handleChangeMortgage" />
+    <h1>Ипотека</h1>
+    <v-form ref="form">
+      <MortgageBlock @changeMortgage="handleChangeMortgage" />
+    </v-form>
     <FiltersBlock @changeStrategies="handleChangeStrategies" />
     <v-row class="mt-6">
       <v-col align="right">
@@ -42,9 +45,15 @@ export default class NewMortgagePage extends Vue {
   async fetchNewMortgage(): Promise<void> {
     try {
       if (this.requestBody.mortgage && this.requestBody.strategy) {
+        this.error = false;
         this.loading = true;
-        await createNewMortgage(this.requestBody);
-        await this.$router.push({ name: RouteNames.MORTGAGES });
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const valid = this.$refs?.form?.validate();
+        if (valid) {
+          await createNewMortgage(this.requestBody);
+          await this.$router.push({ name: RouteNames.MORTGAGES });
+        }
       }
     } catch (error) {
       console.error(error);

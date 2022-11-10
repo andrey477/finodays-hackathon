@@ -39,6 +39,7 @@ import Component from 'vue-class-component';
 import Vue from 'vue';
 import { Watch } from 'vue-property-decorator';
 import { Strategy } from '@/types/strategy';
+import { emailRule } from "@/utils/utils";
 
 @Component
 export default class FiltersBlock extends Vue {
@@ -51,6 +52,8 @@ export default class FiltersBlock extends Vue {
     value: '',
     operation: '',
   };
+
+  emailRule = emailRule;
 
   created() {
     this.strategies.push({ ...this.emptyFilter });
