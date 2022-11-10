@@ -43,6 +43,6 @@ export default class ApplicationCard extends Vue {
 
 <style scoped lang="scss">
 .container {
-  max-width: 200px;
+  max-width: 250px;
 }
 </style>

@@ -17,6 +17,7 @@ import FiltersBlock from '@/components/FiltersBlock/FiltersBlock.vue';
 import MortgageBlock from '@/components/MortgageBlock/MortgageBlock.vue';
 import { Strategy } from '@/types/strategy';
 import { createNewMortgage } from '@/api/mortgage';
+import { RouteNames } from '@/router/routeNames';
 @Component({
   components: { MortgageBlock, FiltersBlock },
 })
@@ -43,6 +44,7 @@ export default class NewMortgagePage extends Vue {
       if (this.requestBody.mortgage && this.requestBody.strategy) {
         this.loading = true;
         await createNewMortgage(this.requestBody);
+        await this.$router.push({ name: RouteNames.MORTGAGES });
       }
     } catch (error) {
       console.error(error);
