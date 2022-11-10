@@ -137,11 +137,6 @@ export default class MortgagePage extends Vue {
     });
   }
 
-  @Watch('creditApplication', { deep: true })
-  changeCreditApplication(value: any): void {
-    console.log(this.creditApplication);
-  }
-
   async fetchMortgage(): Promise<void> {
     try {
       this.loading = true;

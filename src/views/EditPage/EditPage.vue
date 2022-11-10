@@ -55,11 +55,6 @@ export default class EditPage extends Vue {
     return id ? String(id) : '';
   }
 
-  @Watch('requestBody', { deep: true })
-  changeRequestBody(value: any) {
-    console.log(this.requestBody);
-  }
-
   handleChangeMortgage(mortgage: Strategy.Mortgage): void {
     this.requestBody.mortgage = mortgage;
   }

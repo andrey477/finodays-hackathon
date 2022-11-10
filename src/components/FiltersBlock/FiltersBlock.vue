@@ -83,7 +83,6 @@ export default class FiltersBlock extends Vue {
 
   @Watch('strategies', { deep: true })
   changeForm(value: any) {
-    console.log(this.strategies);
     this.$emit('changeStrategies', this.strategies);
   }
 }

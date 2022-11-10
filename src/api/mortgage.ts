@@ -69,11 +69,3 @@ export const updateMortgage = async (
     throw error;
   }
 };
-
-export const testApi = async () => {
-  try {
-    await api.get('/api/blocks');
-  } catch (error) {
-    console.log(error);
-  }
-};

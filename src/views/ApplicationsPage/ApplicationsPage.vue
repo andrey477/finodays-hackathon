@@ -37,7 +37,6 @@ export default class ApplicationsPage extends Vue {
     try {
       this.loading = true;
       this.applications = await getAllApplication();
-      console.log(this.applications);
     } catch (error) {
       console.error(error);
     } finally {

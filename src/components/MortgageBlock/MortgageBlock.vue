@@ -63,9 +63,7 @@ export default class MortgageBlock extends Vue {
   };
 
   @Watch('initMortgage', { deep: true })
-  changeInitMortgage11(value: any) {
-    console.log('!!!');
-    console.log('te');
+  changeInitMortgage(value: any) {
     this.mortgage = {
       name: this.initMortgage?.name,
       percent: this.initMortgage?.percent,
@@ -75,7 +73,6 @@ export default class MortgageBlock extends Vue {
   }
 
   mounted() {
-    console.log(this.initMortgage);
     this.mortgage = {
       name: this.initMortgage?.name,
       percent: this.initMortgage?.percent,
